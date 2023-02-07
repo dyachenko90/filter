@@ -167,17 +167,19 @@ let i = 0;
 
 let cart = [];
 
-// const visibleCart = () => {
-//     const cart = document.querySelector('.cart-container');
-//     const btn = document.querySelector('.btn-cart');
-//     btn.addEventListener('click', (e) => {
-//         cart.style.display = 'none'; 
-//     })
-// }
-
 const addToCart = (item) => {
-    cart.push({...categories[item]});
-    displayCart();
+    let isInArray = false;
+    cart.forEach(product => {
+        if (product.id === item) {
+            isInArray = true;
+        }
+    })
+    if (!isInArray) {
+        cart.push({...categories[item]});
+        displayCart();
+    } else {
+        alert('This product is added in the cart');
+    } 
 }
 
 const deleteProduct = (item) => {
